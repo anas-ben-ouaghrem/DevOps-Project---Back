@@ -35,7 +35,7 @@ public class SpringFoxSwaggerConfig {
 	}
 	private ApiInfo apiInfo () {
 		return new ApiInfoBuilder()
-				.title("Swagger Configuration for tpStockProject")
+				.title("Swagger Configuration for DevOps Project")
 				.description("\"Spring Boot Swagger configuration\"")
 				.version("1.1.0").build();
 	}
