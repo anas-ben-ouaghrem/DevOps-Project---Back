@@ -14,12 +14,12 @@ services:
       - '3306'
   frontend:
     container_name: frontend
-    image: anasbenouaghrem/angular-app:1.0
+    image: houssem1996/angular-app:1.0
     ports:
       - '4200:4200'
   backend:
     container_name: backend
-    image: anasbenouaghrem/spring-app:1.0
+    image: houssem1996/spring-app:1.0
     ports:
       - '8085:8080'
     depends_on:
