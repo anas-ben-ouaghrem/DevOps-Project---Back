@@ -43,11 +43,11 @@ class CategorieProduitServiceImplTest {
     @InjectMocks
     CategorieProduitServiceImpl catgoryProduitServiceImp;
 
-    CategorieProduit categorieproduit = new CategorieProduit( " 12345", "ahmed");
+    CategorieProduit categorieproduit = new CategorieProduit( " 12345", "houssem123");
     List<CategorieProduit> listCategorieProduit = new ArrayList<CategorieProduit>(){
         {
-            add(new CategorieProduit("123456", "ahmed1"));
-            add(new CategorieProduit("1234567", "ahmed2"));
+            add(new CategorieProduit("123456", "houssem123"));
+            add(new CategorieProduit("1234567", "houssem1234"));
         }
     };
 

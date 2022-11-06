@@ -32,6 +32,6 @@ public class CategorieProduit implements Serializable {
 	@JsonIgnore
 	private Set<Produit> produits;
 
-	public CategorieProduit(String s, String ahmed) {
+	public CategorieProduit(String value, String name) {
 	}
 }
