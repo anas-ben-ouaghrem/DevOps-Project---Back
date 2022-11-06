@@ -1,6 +1,20 @@
 pipeline {
     agent any
     stages{
+    stage('Maven-clean'){
+                steps{
+                    script{
+                        sh 'mvn clean'
+                    }
+                }
+            }
+            stage('Maven-test'){
+                        steps{
+                            script{
+                                sh 'mvn test'
+                            }
+                        }
+                    }
         stage('Compile-package'){
             steps{
                 script{
@@ -46,7 +60,7 @@ pipeline {
                     mail bcc: '', body: '''Hi,
 Welcome to jenkins email alerts.
 Thanks,
-Anas''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'anasbo7@hotmail.com'
+Anas''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'houssem095@gmail.com'
                 }
             }
         }
@@ -63,8 +77,8 @@ Anas''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'anasbo7@hot
                             echo "deploying the application"
                             withCredentials([usernamePassword(credentialsId:'dockerhub',usernameVariable:'USER',passwordVariable:'PWD')]) {
                                 sh "echo $PWD | docker login -u $USER --password-stdin"
-                                sh "docker build -t anasbenouaghrem/spring-app:1.0 ."
-                                sh "docker push anasbenouaghrem/spring-app:1.0"
+                                sh "docker build -t houssem1996/spring-app:1.0 ."
+                                sh "docker push houssem1996/spring-app:1.0"
 
                         }
                     }
