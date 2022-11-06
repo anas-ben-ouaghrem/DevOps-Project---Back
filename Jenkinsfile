@@ -33,6 +33,13 @@ pipeline {
               }
             }
           }
+        stage("Deploying jar to Nexus Repository"){
+            steps{
+                script{
+                    sh "mvn deploy"
+                }
+            }
+        }
         stage('Email Notification'){
             steps{
                 script{
