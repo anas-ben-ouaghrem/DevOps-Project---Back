@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -27,39 +28,16 @@ public class SpringFoxSwaggerConfig {
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
-				.apiInfo(apiEndPointsInfo())
-				.securityContexts(Collections.singletonList(securityContext()))
-				.securitySchemes(Arrays.asList(apiKey()))
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.esprit.examen.controller"))
+				.apis(RequestHandlerSelectors.any())
 				.paths(PathSelectors.any())
-				.build();
+				.build().apiInfo(apiInfo());
 	}
-	
-    private ApiInfo apiEndPointsInfo() {
-        return new ApiInfoBuilder()
-                .title("My STOCK PROJECT")
-                .description("Micro-Service Documentation")
-                .version("1.0.0")
-                .build();
-    }
-
-	private ApiKey apiKey() {
-		return new ApiKey("Bearer", AUTHORIZATION_HEADER, "header");
-	}
-	
-	
-	private SecurityContext securityContext() {
-		return SecurityContext.builder()
-				.securityReferences(defaultAuth())
-				.build();
+	private ApiInfo apiInfo () {
+		return new ApiInfoBuilder()
+				.title("Swagger Configuration for DevOps Project")
+				.description("\"Spring Boot Swagger configuration\"")
+				.version("1.1.0").build();
 	}
 
-	private List<SecurityReference> defaultAuth() {
-		AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-		AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-		authorizationScopes[0] = authorizationScope;
-		return Arrays.asList(new SecurityReference("Bearer", authorizationScopes)); 
-
-	}
 }
