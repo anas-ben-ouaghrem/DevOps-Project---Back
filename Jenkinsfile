@@ -54,7 +54,7 @@ pipeline {
                     mail bcc: '', body: '''Hi,
 Welcome to jenkins email alerts.
 Thanks,
-Anas''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'houssemeddine.aouinti@esprit.tn'
+Houssem''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'houssemeddine.aouinti@esprit.tn'
                 }
             }
         }
