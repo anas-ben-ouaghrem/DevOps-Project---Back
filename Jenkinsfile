@@ -22,8 +22,8 @@ pipeline {
         stage("Quality gate status check") {
             steps {
                 script{
-
-              timeout(time: 1, unit: 'MINUTES') {
+                sleep(10)
+              timeout(time: 1, unit: 'HOURS') {
                 def qg = waitForQualityGate()
                 if(qg.status != 'OK') {
                     slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#jenkins-notifications', color: 'danger', message: 'Pipeline aborted: Sonarqube Analysis marked as failed', teamDomain: 'Legion14', tokenCredentialId: 'slack-channel'
