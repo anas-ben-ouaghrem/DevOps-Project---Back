@@ -48,6 +48,7 @@ pipeline {
             }
           }
 
+
         stage('Email Notification'){
             steps{
                 script{
@@ -58,13 +59,13 @@ Houssem''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'housseme
                 }
             }
         }
-//         stage('Slack Notification'){
-//             steps{
-//                 script{
-//                     slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#jenkins-notifications', color: 'good', message: 'Welcome to jenkins notifications channel, legionaries. Sent from Jenkins', teamDomain: 'Legion14', tokenCredentialId: 'slack-channel'
-//                 }
-//             }
-//         }
+         stage('Slack Notification'){
+             steps{
+                 script{
+                     slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#jenkins-notifications', color: 'good', message: 'Welcome to jenkins notifications channel, legionaries. Sent from Jenkins', teamDomain: 'Legion14', tokenCredentialId: 'slack-channel'
+                 }
+           }
+         }
         stage('Build And Deploy Docker Image'){
                     steps{
                         script{
