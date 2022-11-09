@@ -47,11 +47,11 @@ class ProduitServiceImplTest {
     ProduitServiceImpl produitServiceImp;
     @InjectMocks
     StockServiceImpl stockServiceImp;
-    Produit produit = new Produit( " 12345", "ahmed",(float)7.4,new Date(),new Date());
+    Produit produit = new Produit( " 12345", "anas",(float)7.4,new Date(),new Date());
     List<Produit> listProduit = new ArrayList<Produit>(){
         {
-            add(new Produit("123456", "ahmed1",(float)7.4,new Date(),new Date()));
-            add(new Produit("1234567", "ahmed2",(float)8.4,new Date(),new Date()));
+            add(new Produit("123456", "anas11",(float)7.4,new Date(),new Date()));
+            add(new Produit("1234567", "anas22",(float)8.4,new Date(),new Date()));
         }
     };
     @Test
