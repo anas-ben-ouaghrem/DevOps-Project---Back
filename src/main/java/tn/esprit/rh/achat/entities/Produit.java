@@ -49,6 +49,6 @@ public class Produit implements Serializable {
 	private CategorieProduit categorieProduit;
 
 
-	public Produit(String s, String lotfi, float v, Date date, Date date1) {
+	public Produit(String s, String name, float v, Date date, Date date1) {
 	}
 }
