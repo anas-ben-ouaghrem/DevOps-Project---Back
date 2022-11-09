@@ -86,5 +86,16 @@ Houssem''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'housseme
                     }
                 }
             }
+            stage('Docker Compose'){
+                        steps{
+                            script{
+                                sh 'docker stop 08b'
+                                sh 'docker compose up -d'
+                            }
+                        }
+                    }
+
+
+
     }
 }
