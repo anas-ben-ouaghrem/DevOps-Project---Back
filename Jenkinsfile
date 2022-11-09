@@ -66,7 +66,14 @@ Houssem''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'housseme
                  }
            }
          }
-        stage('Build And Deploy Docker Image'){
+         stage('Deploying jar to nexus repo'){
+            steps{
+                script{
+                    nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: './target/achat-1.0.jar']],mavenCoordinate: [artifactId: 'achat', groupId: 'tn.esprit.rh', packaging: 'jar', version: '1']]]
+                }
+            }
+         }
+                 stage('Build And Deploy Docker Image'){
                     steps{
                         script{
                             echo "deploying the application"
