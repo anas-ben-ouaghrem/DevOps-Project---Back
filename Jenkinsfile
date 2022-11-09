@@ -1,20 +1,13 @@
 pipeline {
     agent any
+    environment {
+            NEXUS_VERSION = "nexus3"
+            NEXUS_PROTOCOL = "http"
+            NEXUS_URL = "localhost:8081"
+            NEXUS_REPOSITORY = "maven-snapshots"
+            NEXUS_CREDENTIAL_ID = "nexus-anas-credentials"
+    }
     stages{
-    stage('Maven-clean'){
-                steps{
-                    script{
-                        sh 'mvn clean'
-                    }
-                }
-            }
-            stage('Maven-test'){
-                        steps{
-                            script{
-                                sh 'mvn test'
-                            }
-                        }
-                    }
         stage('Compile-package'){
             steps{
                 script{
@@ -50,7 +43,7 @@ pipeline {
         stage("Deploying jar to Nexus Repository"){
             steps{
                 script{
-                    sh "mvn deploy"
+                     nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: './target/achat-1.0.jar']],mavenCoordinate: [artifactId: 'achat', groupId: 'tn.esprit.rh', packaging: 'jar', version: '1']]]
                 }
             }
         }
@@ -60,7 +53,7 @@ pipeline {
                     mail bcc: '', body: '''Hi,
 Welcome to jenkins email alerts.
 Thanks,
-Anas''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'houssem095@gmail.com'
+Anas''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'anasbo7@hotmail.com'
                 }
             }
         }
@@ -77,8 +70,8 @@ Anas''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'houssem095@
                             echo "deploying the application"
                             withCredentials([usernamePassword(credentialsId:'dockerhub',usernameVariable:'USER',passwordVariable:'PWD')]) {
                                 sh "echo $PWD | docker login -u $USER --password-stdin"
-                                sh "docker build -t houssem1996/spring-app:1.0 ."
-                                sh "docker push houssem1996/spring-app:1.0"
+                                sh "docker build -t anasbenouaghrem/spring-app:1.0 ."
+                                sh "docker push anasbenouaghrem/spring-app:1.0"
 
                         }
                     }
