@@ -19,8 +19,8 @@ pipeline {
             steps{
                 script{
                     jacoco()
-                    def mvnHome = tool name: 'maven', type: 'maven'
-                    withSonarQubeEnv('sonar2'){
+                    def mvnHome = tool name: 'maven-3', type: 'maven'
+                    withSonarQubeEnv('sonar'){
                         sh "${mvnHome}/bin/mvn verify sonar:sonar"
                     }
                 }
@@ -33,7 +33,7 @@ pipeline {
               timeout(time: 1, unit: 'HOURS') {
                 def qg = waitForQualityGate()
                 if(qg.status != 'OK') {
-                    slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#jenkins-notifications', color: 'danger', message: 'Pipeline aborted: Sonarqube Analysis marked as failed', teamDomain: 'Legion14', tokenCredentialId: 'slack-channel'
+                    //slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#jenkins-notifications', color: 'danger', message: 'Pipeline aborted: Sonarqube Analysis marked as failed', teamDomain: 'Legion14', tokenCredentialId: 'slack-channel'
                     error "Pipeline aborted due to quality gate failure: ${qg.status}"
                 }
                 }
@@ -57,13 +57,13 @@ Anas''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job', to: 'anasbo7@hot
                 }
             }
         }
-        stage('Slack Notification'){
+       /* stage('Slack Notification'){
             steps{
                 script{
                     slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '#jenkins-notifications', color: 'good', message: 'Welcome to jenkins notifications channel, legionaries. Sent from Jenkins', teamDomain: 'Legion14', tokenCredentialId: 'slack-channel'
                 }
             }
-        }
+        }*/
         stage('Build And Deploy Docker Image'){
                     steps{
                         script{
